@@ -1,5 +1,10 @@
 import falcon
+import logging
 from app.helper.next_bus import get_bus_data
+from app.setup import APP_NAME
+
+
+logger = logging.getLogger(APP_NAME)
 
 
 class Agency(object):
@@ -10,8 +15,10 @@ class Agency(object):
         """
             Get list of agencies
         """
+        logger.info("get agency list")
         data = get_bus_data("agencyList")
         if data is None:
+            logger.error("failed to get list for next bus")
             resp.status = falcon.HTTP_NO_CONTENT
             resp.body = ""
         else:
@@ -20,7 +27,5 @@ class Agency(object):
     # end of method
 
 # end of class
-
-
 
 
