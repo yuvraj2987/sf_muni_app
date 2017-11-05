@@ -16,3 +16,5 @@ up: stop
 
 stop:
 	docker-compose stop
+	docker-compose rm -f -s
+	docker rm -f
