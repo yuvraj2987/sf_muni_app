@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 echo "Starting application...."
 PYTHONPATH="./app"
-python Application.py
+gunicorn -b 0.0.0.0:8000 Application:app
