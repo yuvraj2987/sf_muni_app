@@ -7,4 +7,4 @@ services:
     image: sf_muni_app:latest
     container_name: sf_muni_app
     ports:
-      - "5000:5000"
+      - "8000:8000"
