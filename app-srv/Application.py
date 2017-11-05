@@ -1,14 +1,10 @@
 #! /usr/bin/env python3
 import falcon
+from app.resources.basic import Ping, Hello
 
 app = falcon.API()
 
 
-class Ping(object):
-    def on_get(self, req, resp):
-        resp.status = falcon.HTTP_200
-        resp.body = "pong"
-
-# end of class
-
-app.add_route("/", Ping())
+# list of routes
+app.add_route("/", Hello())
+app.add_route("/ping", Ping())
