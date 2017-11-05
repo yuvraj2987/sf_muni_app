@@ -11,6 +11,8 @@ full-build:
 clean_images:
 	bash cli/clean_images.sh
 
-
-up:
+up: stop
 	docker-compose up -d
+
+stop:
+	docker-compose stop
