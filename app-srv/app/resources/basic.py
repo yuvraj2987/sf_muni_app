@@ -1,4 +1,8 @@
 import falcon
+import logging
+from app.setup import APP_NAME
+
+logger = logging.getLogger(APP_NAME)
 
 
 class Ping(object):
@@ -7,6 +11,7 @@ class Ping(object):
     """
     def on_get(self, req, resp):
         """ HTTP GET """
+        logger.debug("Ping get request")
         resp.status = falcon.HTTP_200
         resp.body = "pong"
 # end of class
