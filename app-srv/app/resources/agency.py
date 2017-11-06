@@ -29,7 +29,7 @@ class Agency(object):
             data = get_bus_data("agencyList")
             if data is not None:
                 logger.info("%s key inserted into cache", req.path)
-                self._redis.set(req.path, json.dumps(data))
+                self._redis.set(req.path, data)
         #
         if data is None:
             logger.error("failed to get list for next bus")
@@ -37,7 +37,7 @@ class Agency(object):
             resp.body = ""
         else:
             resp.status = falcon.HTTP_OK
-            resp.body = json.dumps(data)
+            resp.body = data
     # end of method
 
 # end of class
