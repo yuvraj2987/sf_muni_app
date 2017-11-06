@@ -1,10 +1,12 @@
 """
     Storage classes
 """
-
+import logging
 import redis
 import hashlib
+from app.setup import APP_NAME
 
+logger = logging.getLogger(APP_NAME)
 
 class RedisClient(object):
     """
@@ -28,20 +30,22 @@ class RedisClient(object):
         """
             Return hash value of key
         """
-        return hashlib.sha1(bytes(key, "utf-8")).hexdigest
+        return hashlib.sha1(bytes(key, "utf-8")).hexdigest()
 
     def set(self, key, val):
         """
             Use sha1 to get hash of key and set value
         """
         key_hash = self._get_hash(key)
+        logger.debug("%s key hash is %s", key, key_hash)
         return self._conn.set(key_hash, val)
 
-    def get(self, key, val):
+    def get(self, key):
         """
             Get value of key from redis
         """
         key_hash = self._get_hash(key)
+        logger.debug("Fetch %s key with hash %s", key, key_hash)
         return self._conn.get(key_hash)
 
     def exists(self, key):
