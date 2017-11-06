@@ -1,5 +1,6 @@
 import falcon
 import logging
+import json
 from app.helper.next_bus import get_bus_data
 from app.setup import APP_NAME
 
@@ -23,7 +24,7 @@ class Agency(object):
             resp.body = ""
         else:
             resp.status = falcon.HTTP_OK
-            resp.body = data
+            resp.body = json.dumps(data)
     # end of method
 
 # end of class

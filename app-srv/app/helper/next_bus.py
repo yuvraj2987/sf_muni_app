@@ -8,7 +8,7 @@ from xml.etree import ElementTree as ET
 from app.setup import APP_NAME
 
 
-logger = logging.get_logger(APP_NAME)
+logger = logging.getLogger(APP_NAME)
 
 NEXT_URL = "http://webservices.nextbus.com/service/publicXMLFeed"
 
@@ -24,7 +24,7 @@ def get_bus_data(cmd, arg=None):
     """
     if cmd is None:
         return None
-    cmd_url = "{}?{}".format(NEXT_URL, full_cmd)
+    cmd_url = "{}?{}".format(NEXT_URL, cmd)
     logger.debug("command url %s", cmd_url)
     try:
         resp = requests.get(cmd_url)
