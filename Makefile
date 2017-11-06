@@ -20,3 +20,6 @@ stop:
 
 logs:
 	docker-compose logs -f
+
+exec:
+	docker exec -ti sf_muni_app bash
