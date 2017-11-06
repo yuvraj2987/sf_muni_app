@@ -4,6 +4,7 @@
 """
 import requests
 import logging
+import json
 from xml.etree import ElementTree as ET
 from app.setup import APP_NAME
 
@@ -20,7 +21,7 @@ def get_bus_data(cmd, arg=None):
             cmd = string
             args = list of arguments to command
         @output:
-            json data or None
+            json formatted string
     """
     if cmd is None:
         return None
@@ -29,12 +30,11 @@ def get_bus_data(cmd, arg=None):
     try:
         resp = requests.get(cmd_url)
         json_data = xml_to_json(resp.content)
-        logger.debug("next api data=%s", str(json_data))
-        return json_data
+        return json.dumps(json_data)
     # Todo: Remove generic excpetion handler
     except Exception as e:
         logger.error("Exception while fetching data %s", str(e))
-        return None
+        return ""
 # end of method
 
 
