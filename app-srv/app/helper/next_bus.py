@@ -24,11 +24,12 @@ def get_bus_data(cmd, arg=None):
     """
     if cmd is None:
         return None
-    cmd_url = "{}?{}".format(NEXT_URL, cmd)
+    cmd_url = "{}?command={}".format(NEXT_URL, cmd)
     logger.debug("command url %s", cmd_url)
     try:
         resp = requests.get(cmd_url)
         json_data = xml_to_json(resp.content)
+        logger.debug("next api data=%s", str(json_data))
         return json_data
     # Todo: Remove generic excpetion handler
     except Exception as e:
