@@ -35,7 +35,6 @@ def get_bus_data(cmd, arg=None):
     except Exception as e:
         logger.error("Exception while fetching data %s", str(e))
         return None
-
 # end of method
 
 

@@ -6,6 +6,7 @@ import logging
 
 APP_NAME = "Sf_Muni_App"
 
+
 def configure_logger():
     """
         Configure logger to be used by app
@@ -18,3 +19,5 @@ def configure_logger():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
+# end of configure_logger method
+
