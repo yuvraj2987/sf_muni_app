@@ -1,0 +1,16 @@
+version: "3"
+services:
+  sut:
+    build:
+      context: ..
+      dockerfile: dockerfiles/test/Dockerfile
+    image: sf_muni_test:latest
+    container_name: sf_muni_test
+    depends_on:
+      - redis
+      - app
+  app:
+    image: "sf_muni_app:latest"
+  redis:
+    image: "redis:alpine"
+

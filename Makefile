@@ -23,3 +23,9 @@ logs:
 
 exec:
 	docker exec -ti sf_muni_app bash
+
+test-up:
+	docker-compose -f dockerfiles/docker-compose.test.yml up -d
+
+test-build:
+	docker-compose -f dockerfiles/docker-compose.test.yml build
