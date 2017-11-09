@@ -4,6 +4,7 @@ import logging
 from app.setup import APP_NAME, configure_logger
 from app.resources.basic import Ping, Hello
 from app.resources.agency import Agency
+from app.resources.routes import Routes
 from app.storage import RedisClient
 
 configure_logger()
@@ -16,3 +17,4 @@ app = falcon.API()
 app.add_route("/", Hello())
 app.add_route("/ping", Ping())
 app.add_route("/agency", Agency())
+app.add_route("/route/{agency}", Routes())

@@ -8,6 +8,7 @@ from app.setup import APP_NAME
 
 logger = logging.getLogger(APP_NAME)
 
+
 class RedisClient(object):
     """
         Wrapper around redis client
@@ -32,13 +33,21 @@ class RedisClient(object):
         """
         return hashlib.sha1(bytes(key, "utf-8")).hexdigest()
 
-    def set(self, key, val):
+    def set(self, key, val, ttl=30):
         """
             Use sha1 to get hash of key and set value
+            @input:
+                key: str
+                val: str
+                ttl: interger. key expire time
+            @output:
+                True/False
         """
         key_hash = self._get_hash(key)
         logger.debug("%s key hash is %s", key, key_hash)
-        return self._conn.set(key_hash, val)
+        set_ret = self._conn.set(key_hash, val)
+        self._conn.expire(key_hash, ttl)
+        return set_ret
 
     def get(self, key):
         """
