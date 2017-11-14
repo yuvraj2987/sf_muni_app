@@ -2,6 +2,7 @@
 #
 #   Starts docker-compose.test and get return code for sf_muni_test container
 # ------------------------------------------------
+echo "Start docker tests..."
 docker-compose -f dockerfiles/docker-compose.test.yml up -d
 TEST_RESULT=$(docker wait sf_muni_test)
 echo "Test result, $TEST_RESULT"
@@ -13,4 +14,7 @@ then
 else
     echo "Test passed...."
 fi
+echo "Stop docker test containers"
+docker-compose -f dockerfiles/docker-compose.test.yml stop
+docker ps -aq --no-trunc | xargs docker rm
 exit $TEST_RESULT
