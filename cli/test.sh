@@ -16,5 +16,6 @@ else
 fi
 echo "Stop docker test containers"
 docker-compose -f dockerfiles/docker-compose.test.yml stop
+sleep 5
 docker ps -aq --no-trunc | xargs docker rm
 exit $TEST_RESULT
